@@ -1,4 +1,3 @@
-import { AuthService } from './../services/auth.service';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -9,7 +8,7 @@ import { NgModule } from '@angular/core';
 
     ],
     providers: [
-        AuthService
+        
     ]
 })
 export class SharedModule { }

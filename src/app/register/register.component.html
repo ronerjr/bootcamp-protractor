@@ -1,3 +1,64 @@
-<p>
-  register works!
-</p>
+<form [formGroup]="registerForm">
+  <div class="form-row">
+    <div class="col-12 text-center mt-3">
+      <h3>Register</h3>
+    </div>
+    <!-- First name-->
+    <div class="form-group col-12 col-md-4 offset-md-4">
+      <label for="firstName">First name</label>
+      <input formControlName="firstName" name="firstName" id="firstName" type="text" class="form-control" [ngClass]="{'is-invalid': hasError('firstName')}"
+      />
+      <div class="invalid-feedback">
+        First name is mandatory
+      </div>
+    </div>
+    <!-- Last name-->
+    <div class="form-group col-12 col-md-4 offset-md-4">
+      <label for="lastName">Last name</label>
+      <input formControlName="lastName" name="lastName" id="lastName" type="text" class="form-control" [ngClass]="{'is-invalid': hasError('lastName')}"
+      />
+      <div class="invalid-feedback">
+        Last name is mandatory
+      </div>
+    </div>
+    <!-- Gender selection-->
+    <div class="form-group col-12 col-md-4 offset-md-4">
+      <label for="gender">Gender</label>
+      <select formControlName="gender" [value]="undefined" name="gender" id="gender" class="form-control">
+        <option [value]="undefined">Not informed</option>
+        <option value="m">Male</option>
+        <option value="f">Female</option>
+        <option value="o">Other</option>
+      </select>
+      <!-- Gender Opt out -->
+      <div class="form-check">
+        <input class="form-check-input" formControlName="genderOptOut" type="checkbox" value="" id="ckGenderOptOut">
+        <label class="form-check-label" for="ckGenderOptOut">
+          I prefer to not inform
+        </label>
+      </div>
+    </div>
+    <!-- Username-->
+    <div class="form-group col-12 col-md-4 offset-md-4">
+      <label for="username">Username</label>
+      <input formControlName="username" name="username" id="username" type="text" class="form-control" [ngClass]="{'is-invalid': hasError('username')}"
+      />
+      <div class="invalid-feedback">
+        Username name is mandatory
+      </div>
+    </div>
+    <!-- Password-->
+    <div class="form-group col-12 col-md-4 offset-md-4">
+      <label for="password">Password</label>
+      <input formControlName="password" name="password" id="password" type="password" class="form-control" [ngClass]="{'is-invalid': hasError('password')}"
+      />
+      <div class="invalid-feedback">
+        Password name is mandatory
+      </div>
+    </div>
+    <!-- Submit-->
+    <div class="col-8 offset-2 col-md-4 offset-md-4">
+      <button class="btn btn-primary btn-block" type="button" [disabled]="registerForm.invalid">Submit</button>
+    </div>
+  </div>
+</form>

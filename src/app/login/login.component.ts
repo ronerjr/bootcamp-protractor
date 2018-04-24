@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { Credentials } from './models/credentials.class';
 import { AuthService } from './../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   private loginForm: FormGroup;
+  private loginError = false;
 
   constructor(private _authService: AuthService,
     private _formBuilder: FormBuilder,
@@ -23,13 +24,13 @@ export class LoginComponent implements OnInit {
     }
 
     this.loginForm = this._formBuilder.group({
-      email: [''],
-      password: ['']
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
   public get credentials(): Credentials {
-    const username = this.loginForm.controls.email.value;
+    const username = this.loginForm.controls.username.value;
     const password = this.loginForm.controls.password.value;
     return new Credentials(username, password);
   }
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
       })
       .catch((error: number) => {
         // handle login failed
+        this.loginError = true;
       });
   }
 }
