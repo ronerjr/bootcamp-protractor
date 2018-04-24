@@ -1,0 +1,47 @@
+import { Router } from '@angular/router';
+import { Credentials } from './models/credentials.class';
+import { AuthService } from './../../shared/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  private loginForm: FormGroup;
+
+  constructor(private _authService: AuthService,
+    private _formBuilder: FormBuilder,
+    private _router: Router) { }
+
+  public ngOnInit() {
+    if (this._authService.loggedIn) {
+      this._router.navigate(['']);
+    }
+
+    this.loginForm = this._formBuilder.group({
+      email: [''],
+      password: ['']
+    });
+  }
+
+  public get credentials(): Credentials {
+    const username = this.loginForm.controls.email.value;
+    const password = this.loginForm.controls.password.value;
+    return new Credentials(username, password);
+  }
+
+  public login(credentials: Credentials): void {
+    const { username, password } = credentials;
+    this._authService.login(username, password)
+      .then((result: number) => {
+        this._router.navigate(['home']);
+      })
+      .catch((error: number) => {
+        // handle login failed
+      });
+  }
+}
