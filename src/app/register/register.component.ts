@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
@@ -12,7 +13,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private registerForm: FormGroup;
   private genderOptOutSubs: Subscription;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) { }
 
   public ngOnInit() {
     this.registerForm = this._formBuilder.group({
@@ -52,5 +57,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
     return false;
+  }
+
+  public submitRegistration(): void {
+    this._router.navigate(['success'], { skipLocationChange: false, relativeTo: this._activatedRoute });
   }
 }

@@ -58,7 +58,7 @@
     </div>
     <!-- Submit-->
     <div class="col-8 offset-2 col-md-4 offset-md-4">
-      <button class="btn btn-primary btn-block" type="button" [disabled]="registerForm.invalid">Submit</button>
+      <button class="btn btn-primary btn-block" type="button" (click)="submitRegistration()" [disabled]="registerForm.invalid">Submit</button>
     </div>
   </div>
 </form>

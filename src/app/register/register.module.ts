@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register.component';
 import { RegisterRoutes } from './register.routing';
+import { RegistrationCompleteComponent } from './registration-complete/registration-complete.component';
 
 @NgModule({
   imports: [
@@ -10,6 +11,9 @@ import { RegisterRoutes } from './register.routing';
     ReactiveFormsModule,
     RegisterRoutes
   ],
-  declarations: [RegisterComponent]
+  declarations: [
+    RegisterComponent,
+    RegistrationCompleteComponent
+  ]
 })
 export class RegisterModule { }
