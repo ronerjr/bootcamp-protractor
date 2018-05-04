@@ -1,7 +1,9 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { ValidateMaskedInput } from './validators/masked-input-validator';
 import { Subscription } from 'rxjs/Subscription';
+import { truncate } from 'fs';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +14,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   private registerForm: FormGroup;
   private genderOptOutSubs: Subscription;
+  private cellPhoneMask: (String | RegExp)[] = ['(', /[0-9]/, /[0-9]/, ')', ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -23,6 +26,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registerForm = this._formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+      cellphone: ['', [Validators.required, ValidateMaskedInput('_')]],
       gender: ['', [Validators.required]],
       genderOptOut: [false],
       username: ['', [Validators.required]],
@@ -45,18 +49,38 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public fieldValue(fieldname: string): any {
     const field: AbstractControl = this.registerForm.controls[fieldname];
+
     if (field) {
       return field.value;
     }
+
+    return undefined;
   }
 
-  public hasError(fieldname: any): boolean {
-    const field: AbstractControl = this.registerForm.controls[fieldname];
+  public hasError(fieldName: any): boolean {
+    const field: AbstractControl = this.registerForm.controls[fieldName];
+    return field && field.touched && field.errors && Object.keys(field.errors).length > 0;
+  }
+
+  public getError(fieldName: string): string | void {
+    const field: AbstractControl = this.registerForm.controls[fieldName];
     if (field && field.errors) {
-      return field.touched && field.errors.length != 0;
+      return Object.keys(field.errors)[0];
     }
 
-    return false;
+    return undefined;
+  }
+
+  public errorLabel(error: string, fieldName: string): string {
+    console.log(error)
+    switch (error) {
+      case "required":
+        return `${fieldName} is mandatory`;
+      case "invalid":
+        return `${fieldName} is invalid`;
+      default:
+        return "";
+    }
   }
 
   public submitRegistration(): void {
