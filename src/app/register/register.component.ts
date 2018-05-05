@@ -2,8 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 import { ValidateMaskedInput } from './validators/masked-input-validator';
-import { Subscription } from 'rxjs/Subscription';
-import { truncate } from 'fs';
+import { Subscription } from 'rxjs/subscription';
 
 @Component({
   selector: 'app-register',
@@ -74,12 +73,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public errorLabel(error: string, fieldName: string): string {
     console.log(error)
     switch (error) {
-      case "required":
+      case 'required':
         return `${fieldName} is mandatory`;
-      case "invalid":
+      case 'invalid':
         return `${fieldName} is invalid`;
       default:
-        return "";
+        return '';
     }
   }
 
