@@ -8,7 +8,7 @@ export class LoginData {
 
     invalid = [
         {
-            username: 'roner@venturus.org.br',
+            username: 'tio.roni@venturus.org.br',
             password: 'roner'
         },
         {
