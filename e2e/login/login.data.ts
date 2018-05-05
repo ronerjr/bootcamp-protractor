@@ -9,7 +9,7 @@ export class LoginData {
     ];
     invalid = [];
     constructor() {
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 5; index++) {
             let data = {};
             data['username'] = faker.internet.email();
             data['password'] = faker.internet.password();
