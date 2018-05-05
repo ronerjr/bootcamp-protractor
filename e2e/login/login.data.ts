@@ -1,3 +1,5 @@
+import * as faker from 'faker';
+
 export class LoginData {
     valid = [
         {
@@ -5,19 +7,13 @@ export class LoginData {
             password: 'admin'
         }
     ];
-
-    invalid = [
-        {
-            username: 'tio.roni@venturus.org.br',
-            password: 'roner'
-        },
-        {
-            username: 'childo@venturus.org.br',
-            password: 'childo'
-        },
-        {
-            username: 'jorelto@venturus.org.br',
-            password: 'jorelto'
-        },
-    ];
+    invalid = [];
+    constructor() {
+        for (let index = 0; index < 10; index++) {
+            let data = {};
+            data['username'] = faker.internet.email();
+            data['password'] = faker.internet.password();
+            this.invalid.unshift(data);
+        }
+    }
 }
