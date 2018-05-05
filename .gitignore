@@ -45,3 +45,4 @@ Thumbs.db
 
 /allure-report/**
 /allure-results/**
+package-lock.json
