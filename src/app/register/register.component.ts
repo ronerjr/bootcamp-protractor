@@ -13,7 +13,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   private registerForm: FormGroup;
   private genderOptOutSubs: Subscription;
-  private cellPhoneMask: (String | RegExp)[] = ['(', /[0-9]/, /[0-9]/, ')', ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
+  private cellPhoneMask: (String | RegExp)[] = ['(', /[0-9]/, /[0-9]/, ')', ' ', /[0-9]/,
+    /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -43,7 +44,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.genderOptOutSubs && this.genderOptOutSubs.unsubscribe();
+    this.genderOptOutSubs.unsubscribe();
   }
 
   public fieldValue(fieldname: string): any {
@@ -71,7 +72,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public errorLabel(error: string, fieldName: string): string {
-    console.log(error)
     switch (error) {
       case 'required':
         return `${fieldName} is mandatory`;

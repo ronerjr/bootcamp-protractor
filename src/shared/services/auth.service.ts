@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
 
-    private _loggedIn: boolean = false;
+    private _loggedIn = false;
 
     constructor() {
         this._loggedIn = localStorage.getItem('logged_in') ? true : false;

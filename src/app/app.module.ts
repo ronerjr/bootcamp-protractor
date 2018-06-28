@@ -1,4 +1,4 @@
-import { NavigationBar } from './../shared/components/navigation-bar/navigation-bar.component';
+import { NavigationBarComponent } from './../shared/components/navigation-bar/navigation-bar.component';
 import { SharedModule } from './../shared/modules/shared.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,10 +18,7 @@ import { CoreModule } from '../shared/modules/core.module';
   ],
   declarations: [
     AppComponent,
-    NavigationBar
-  ],
-  providers: [
-    //
+    NavigationBarComponent
   ],
   bootstrap: [AppComponent]
 })

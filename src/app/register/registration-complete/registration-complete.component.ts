@@ -10,10 +10,6 @@ export class RegistrationCompleteComponent implements OnInit {
 
   constructor(private _router: Router) { }
 
-  ngOnInit() {
-    //  
-  }
-
   public backToLogin(): void {
     this._router.navigate(['login']);
   }

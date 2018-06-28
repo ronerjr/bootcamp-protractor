@@ -6,13 +6,13 @@ export function ValidateMaskedInput(placeholder: string) {
 
         if (value) {
             const expectedLength = value.length;
-            const unmasked = value.replace(new RegExp(placeholder, 'g'), '')
+            const unmasked = value.replace(new RegExp(placeholder, 'g'), '');
 
-            if (unmasked.length != expectedLength) {
+            if (unmasked.length !== expectedLength) {
                 return { invalid: true };
             }
         }
 
         return null;
-    }
+    };
 }

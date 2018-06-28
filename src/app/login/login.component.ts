@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  private loginForm: FormGroup;
+  public loginForm: FormGroup;
   private loginError = false;
 
   constructor(private _authService: AuthService,

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     templateUrl: './navigation-bar.component.html',
     styleUrls: ['./navigation-bar.component.css']
 })
-export class NavigationBar {
+export class NavigationBarComponent {
 
     constructor(private _authService: AuthService,
         private _router: Router) { }

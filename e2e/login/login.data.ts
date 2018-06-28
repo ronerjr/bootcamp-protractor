@@ -10,7 +10,7 @@ export class LoginData {
     invalid = [];
     constructor() {
         for (let index = 0; index < 5; index++) {
-            let data = {};
+            const data = {};
             data['username'] = faker.internet.email();
             data['password'] = faker.internet.password();
             this.invalid.unshift(data);
